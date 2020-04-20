@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC
+        "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+
+    <!-- !!!! Driver Class Path !!!! -->
+    <classPathEntry location="D:\maven-repository\mysql\mysql-connector-java\5.1.32\mysql-connector-java-5.1.32.jar"/>
+
+    <!-- 使用MyBatis3Simple，避免生成多余的代码 -->
+    <context id="context" targetRuntime="MyBatis3Simple">
+        <commentGenerator>
+            <property name="suppressAllComments" value="true"/>
+            <property name="suppressDate" value="true"/>
+        </commentGenerator>
+
+        <!-- !!!! Database Configurations !!!! -->
+        <jdbcConnection
+                driverClass="com.mysql.jdbc.Driver"
+                connectionURL="jdbc:mysql://192.168.243.4:3306/taotao?characterEncoding=UTF-8"
+                userId="zhi"
+                password="zhI@0430"
+        />
+
+        <!-- 指定生成的类型为java类型，避免数据库中number等类型字段 -->
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+
+        <!-- !!!! Model Configurations !!!! -->
+        <javaModelGenerator targetPackage="org.example.ttsc.entity" targetProject="src/main/java">
+            <property name="enableSubPackages" value="false"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+
+        <!-- !!!! Mapper XML Configurations !!!! -->
+        <sqlMapGenerator targetPackage="org.example.ttsc.mapper" targetProject="src/main/resources" >
+            <property name="enableSubPackages" value="false"/>
+        </sqlMapGenerator>
+
+        <!-- !!!! Mapper Interface Configurations !!!! -->
+        <!-- 使用MyBatis3Simple运行时，type只能为“ANNOTATEDMAPPER”或者“XMLMAPPER” -->
+        <!-- 这里采用注解配置，而非XML配置 -->
+        <javaClientGenerator targetPackage="org.example.ttsc.dao" targetProject="src/main/java" type="XMLMAPPER">
+            <property name="enableSubPackages" value="false"/>
+        </javaClientGenerator>
+
+        <!-- !!!! Table Configurations !!!! -->
+        <table tableName="tb_content" schema="taotao" domainObjectName="TbContent">
+            <columnOverride column="category_id" property="categoryId"/>
+            <columnOverride column="sub_title" property="subTitle"/>
+            <columnOverride column="title_desc" property="titleDesc"/>
+            <columnOverride column="category_id" property="categoryId"/>
+        </table>
+
+        <table tableName="tb_content_category" schema="taotao" domainObjectName="TbContentCategory">
+            <columnOverride column="parent_id" property="parentId"/>
+            <columnOverride column="sort_order" property="sortOrder"/>
+            <columnOverride column="is_parent" property="isParent"/>
+        </table>
+
+        <table tableName="tb_item" schema="taotao" domainObjectName="TbItem">
+            <columnOverride column="sell_point" property="sellPoint"/>
+        </table>
+
+        <table tableName="tb_item_cat" schema="taotao" domainObjectName="TbItemCat">
+            <columnOverride column="parent_id" property="parentId"/>
+            <columnOverride column="sort_order" property="sortOrder"/>
+            <columnOverride column="is_parent" property="isParent"/>
+        </table>
+
+        <table tableName="tb_item_desc" schema="taotao" domainObjectName="TbItemDesc">
+            <columnOverride column="item_id" property="itemId"/>
+            <columnOverride column="item_desc" property="itemDesc"/>
+        </table>
+
+        <table tableName="tb_item_param" schema="taotao" domainObjectName="TbItemParam">
+            <columnOverride column="item_cat_id" property="itemCatId"/>
+            <columnOverride column="param_data" property="paramData"/>
+        </table>
+
+        <table tableName="tb_item_param_item" schema="taotao" domainObjectName="TbItemParamItem">
+            <columnOverride column="item_id" property="itemId"/>
+        </table>
+
+        <table tableName="tb_order" schema="taotao" domainObjectName="TbOrder">
+            <columnOverride column="order_id" property="orderId"/>
+            <columnOverride column="payment_type" property="paymentType"/>
+            <columnOverride column="post_fee" property="postFee"/>
+            <columnOverride column="create_time" property="createTime"/>
+            <columnOverride column="update_time" property="updateTime"/>
+            <columnOverride column="payment_time" property="paymentTime"/>
+            <columnOverride column="consign_time" property="consignTime"/>
+            <columnOverride column="end_time" property="endTime"/>
+            <columnOverride column="close_time" property="closeTime"/>
+            <columnOverride column="shipping_name" property="shippingName"/>
+            <columnOverride column="shipping_code" property="shippingCode"/>
+            <columnOverride column="user_id" property="userId"/>
+            <columnOverride column="buyer_message" property="buyerMessage"/>
+            <columnOverride column="buyer_nick" property="buyerNick"/>
+            <columnOverride column="buyer_rate" property="buyerRate"/>
+        </table>
+
+        <table tableName="tb_order_item" schema="taotao" domainObjectName="TbOrderItem">
+            <columnOverride column="item_id" property="itemId"/>
+            <columnOverride column="order_id" property="orderId"/>
+            <columnOverride column="total_fee" property="totalFee"/>
+            <columnOverride column="pic_path" property="picPath"/>
+        </table>
+
+        <table tableName="tb_order_shipping" schema="taotao" domainObjectName="TbOrderShipping">
+            <columnOverride column="order_id" property="orderId"/>
+            <columnOverride column="receiver_name" property="receiverName"/>
+            <columnOverride column="receiver_phone" property="receiverPhone"/>
+            <columnOverride column="receiver_mobile" property="receiverMobile"/>
+            <columnOverride column="receiver_state" property="receiverState"/>
+            <columnOverride column="receiver_city" property="receiverCity"/>
+            <columnOverride column="receiver_district" property="receiverDistrict"/>
+            <columnOverride column="receiver_address" property="receiverAddress"/>
+            <columnOverride column="receiver_zip" property="receiverZip"/>
+        </table>
+
+        <table tableName="tb_user" schema="taotao" domainObjectName="TbUser"/>
+    </context>
+</generatorConfiguration>

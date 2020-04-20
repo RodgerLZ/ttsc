@@ -28,6 +28,10 @@
             <artifactId>mybatis-spring</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.mybatis.generator</groupId>
+            <artifactId>mybatis-generator-core</artifactId>
+        </dependency>
+        <dependency>
             <groupId>com.github.miemiedev</groupId>
             <artifactId>mybatis-paginator</artifactId>
         </dependency>
@@ -46,6 +50,33 @@
             <artifactId>druid</artifactId>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <!-- mybatis-generator -->
+            <plugin>
+                <groupId>org.mybatis.generator</groupId>
+                <artifactId>mybatis-generator-maven-plugin</artifactId>
+                <version>1.4.0</version>
+                <!-- 插件配置 -->
+                <configuration>
+                    <!-- 指定MyBatis Generator插件的配置文件 -->
+                    <configurationFile>src/main/resources/generatorConfig.xml</configurationFile>
+                    <!-- 是否重写已存在的文件 -->
+                    <overwrite>true</overwrite>
+                </configuration>
+                <!-- 编译之前需要执行的命令 -->
+                <executions>
+                    <execution>
+                        <id>Generate MyBatis Artifacts</id>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 
 
 </project>
