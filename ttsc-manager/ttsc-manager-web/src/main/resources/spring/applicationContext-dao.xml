@@ -31,6 +31,7 @@
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <!-- 加载 MyBatis 的配置文件 -->
         <property name="configLocation" value="classpath:mybatis/SqlMapConfig.xml"/>
+        <property name="mapperLocations" value="classpath*:/org/example/ttsc/mapper/*.xml"/>
         <!-- 数据源 -->
         <property name="dataSource" ref="dataSource"/>
     </bean>
