@@ -1,11 +1,10 @@
-package org.example.ttsc.controller.skuManage;
+package org.example.ttsc.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/sku/")
 public class PageController {
 
     @RequestMapping("/")

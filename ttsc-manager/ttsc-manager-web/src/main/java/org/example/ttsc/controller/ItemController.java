@@ -1,12 +1,11 @@
-package org.example.ttsc.controller.skuManage;
+package org.example.ttsc.controller;
 
-import org.example.ttsc.entity.TbItem;
-import org.example.ttsc.service.skuManage.ItemService;
+import org.example.ttsc.pojo.EUDataGridResult;
+import org.example.ttsc.service.ItemService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.util.List;
 
 @Controller
 @RequestMapping("/item")
@@ -17,7 +16,7 @@ public class ItemController {
 
     @ResponseBody
     @RequestMapping(value = "/list", method = RequestMethod.GET)
-    public List<TbItem> getItemList(@RequestParam Integer pageNum, @RequestParam Integer pageSize) {
-        return itemService.getItemList(pageNum, pageSize);
+    public EUDataGridResult getItemList(@RequestParam Integer page, @RequestParam Integer rows) {
+        return itemService.getItemList(page, rows);
     }
 }
