@@ -13,4 +13,6 @@ public interface TbItemCatMapper {
     List<TbItemCat> selectAll();
 
     int updateByPrimaryKey(TbItemCat record);
+
+    List<TbItemCat> selectByParentId(Long parentId);
 }

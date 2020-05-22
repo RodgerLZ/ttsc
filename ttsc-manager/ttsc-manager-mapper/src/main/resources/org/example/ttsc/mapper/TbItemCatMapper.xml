@@ -43,4 +43,9 @@
     select id, parent_id, name, status, sort_order, is_parent, created, updated
     from tb_item_cat
   </select>
+  <select id="selectByParentId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select id, parent_id, name, status, sort_order, is_parent, created, updated
+    from tb_item_cat
+    where parent_id = #{parentId,jdbcType=BIGINT}
+  </select>
 </mapper>
