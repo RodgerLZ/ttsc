@@ -18,4 +18,12 @@
         <property name="prefix" value="/WEB-INF/jsp/" />
         <property name="suffix" value=".jsp" />
     </bean>
+
+    <!-- 支持上传文件 -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- 设置上传文件的最大尺寸为50MB -->
+        <property name="maxUploadSize">
+            <value>52428800</value>
+        </property>
+    </bean>
 </beans>

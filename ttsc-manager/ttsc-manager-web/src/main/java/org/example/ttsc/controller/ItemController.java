@@ -25,7 +25,7 @@ public class ItemController {
     public EUDataGridResult getItemList(@RequestParam Integer page, @RequestParam Integer rows) {
         return itemService.getItemList(page, rows);
     }
-    
+
     @ResponseBody
     @RequestMapping(value = "/cat/list", method = RequestMethod.POST)
     public List<EUTreeNode> getItemCatList(Integer id) {
