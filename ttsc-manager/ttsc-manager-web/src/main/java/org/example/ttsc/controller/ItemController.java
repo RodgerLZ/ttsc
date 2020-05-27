@@ -1,7 +1,9 @@
 package org.example.ttsc.controller;
 
+import org.example.ttsc.entity.TbItem;
 import org.example.ttsc.pojo.EUDataGridResult;
 import org.example.ttsc.pojo.EUTreeNode;
+import org.example.ttsc.pojo.TaotaoResult;
 import org.example.ttsc.service.ItemCatService;
 import org.example.ttsc.service.ItemService;
 import org.springframework.stereotype.Controller;
@@ -33,6 +35,12 @@ public class ItemController {
             id = 0;
         }
         return itemCatService.getItemCatList(id);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    public TaotaoResult saveItem(TbItem tbItem, String desc) {
+        return itemService.saveItem(tbItem, desc);
     }
 
 }
