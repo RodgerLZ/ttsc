@@ -13,4 +13,8 @@ public interface TbItemParamMapper {
     List<TbItemParam> selectAll();
 
     int updateByPrimaryKey(TbItemParam record);
+
+    TbItemParam selectByItemCatId(Long itemCatId);
+
+    int deleteByIds(List<Long> ids);
 }

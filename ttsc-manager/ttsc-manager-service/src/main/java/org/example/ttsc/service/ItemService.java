@@ -8,5 +8,13 @@ public interface ItemService {
 
     EUDataGridResult getItemList(Integer pageNum, Integer pageSize);
 
-    TaotaoResult saveItem(TbItem tbItem, String desc);
+    TaotaoResult saveItem(TbItem tbItem, String desc, String itemParams);
+
+    TaotaoResult queryCatParam(Long itemCatId);
+
+    EUDataGridResult queryCatParamList(Integer pageNum, Integer pageSize);
+
+    TaotaoResult saveCatParam(Long itemCatId, String paramData);
+
+    TaotaoResult deleteCatParam(String ids);
 }

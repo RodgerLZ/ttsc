@@ -35,4 +35,17 @@
     select id, item_cat_id, created, updated, param_data
     from tb_item_param
   </select>
+  <select id="selectByItemCatId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select id, item_cat_id, created, updated, param_data
+    from tb_item_param
+    where item_cat_id = #{itemCatId,jdbcType=BIGINT}
+    order by id desc limit 1
+  </select>
+  <delete id="deleteByIds" parameterType="java.util.List">
+    delete from tb_item_param
+    where id in
+    <foreach item="item" collection="list" separator="," open="(" close=")">
+      #{item}
+    </foreach>
+  </delete>
 </mapper>

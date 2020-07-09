@@ -16,6 +16,9 @@ public class PictureController {
     @Resource
     private PictureService pictureService;
 
+    /**
+     * 新增商品，图片上传接口
+     */
     @ResponseBody
     @RequestMapping(value = "/pic/upload", method = RequestMethod.POST)
     public EUPictureResult uploadPicture(MultipartFile uploadFile) {
