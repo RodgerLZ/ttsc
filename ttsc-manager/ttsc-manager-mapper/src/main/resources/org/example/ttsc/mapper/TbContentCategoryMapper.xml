@@ -15,7 +15,7 @@
     delete from tb_content_category
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <insert id="insert" parameterType="org.example.ttsc.entity.TbContentCategory">
+  <insert id="insert" parameterType="org.example.ttsc.entity.TbContentCategory" useGeneratedKeys="true" keyProperty="id">
     insert into tb_content_category (id, parent_id, name, 
       status, sort_order, is_parent, 
       created, updated)
@@ -42,5 +42,10 @@
   <select id="selectAll" resultMap="BaseResultMap">
     select id, parent_id, name, status, sort_order, is_parent, created, updated
     from tb_content_category
+  </select>
+  <select id="selectByParentId" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select id, parent_id, name, status, sort_order, is_parent, created, updated
+    from tb_content_category
+    where parent_id = #{parentId,jdbcType=BIGINT}
   </select>
 </mapper>

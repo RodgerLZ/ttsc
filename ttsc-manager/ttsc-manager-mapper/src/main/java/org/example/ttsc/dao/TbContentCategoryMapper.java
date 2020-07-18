@@ -13,4 +13,6 @@ public interface TbContentCategoryMapper {
     List<TbContentCategory> selectAll();
 
     int updateByPrimaryKey(TbContentCategory record);
+
+    List<TbContentCategory> selectByParentId(Long parentId);
 }
