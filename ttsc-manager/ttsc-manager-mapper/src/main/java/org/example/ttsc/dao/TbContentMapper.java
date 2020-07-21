@@ -13,4 +13,6 @@ public interface TbContentMapper {
     List<TbContent> selectAll();
 
     int updateByPrimaryKey(TbContent record);
+
+    List<TbContent> selectList(TbContent record);
 }

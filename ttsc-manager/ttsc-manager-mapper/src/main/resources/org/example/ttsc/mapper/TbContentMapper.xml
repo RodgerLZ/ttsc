@@ -14,6 +14,11 @@
     <result column="updated" jdbcType="TIMESTAMP" property="updated" />
     <result column="content" jdbcType="LONGVARCHAR" property="content" />
   </resultMap>
+
+  <sql id="Base_Column_List">
+    id,category_id,title,sub_title,title_desc,url,pic,pic2,created,updated,content
+  </sql>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from tb_content
     where id = #{id,jdbcType=BIGINT}
@@ -52,5 +57,46 @@
     select id, category_id, title, sub_title, title_desc, url, pic, pic2, created, updated, 
     content
     from tb_content
+  </select>
+
+  <select id="selectList" parameterType="org.example.ttsc.entity.TbContent" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tb_content
+    <where>
+      <if test="id != null">
+        and id = #{id,jdbcType=BIGINT}
+      </if>
+      <if test="categoryId != null">
+        and category_id = #{categoryId,jdbcType=BIGINT}
+      </if>
+      <if test="title != null">
+        and title = #{title,jdbcType=VARCHAR}
+      </if>
+      <if test="subTitle != null">
+        and sub_title = #{subTitle,jdbcType=VARCHAR}
+      </if>
+      <if test="titleDesc != null">
+        and title_desc = #{titleDesc,jdbcType=VARCHAR}
+      </if>
+      <if test="url != null">
+        and url = #{url,jdbcType=VARCHAR}
+      </if>
+      <if test="pic != null">
+        and pic = #{pic,jdbcType=VARCHAR}
+      </if>
+      <if test="pic2 != null">
+        and pic2 = #{pic2,jdbcType=VARCHAR}
+      </if>
+      <if test="created != null">
+        and created = #{created,jdbcType=TIMESTAMP}
+      </if>
+      <if test="updated != null">
+        and updated = #{updated,jdbcType=TIMESTAMP}
+      </if>
+      <if test="content != null">
+        and content = #{content,jdbcType=LONGVARCHAR}
+      </if>
+    </where>
   </select>
 </mapper>

@@ -13,20 +13,33 @@ import javax.annotation.Resource;
 import java.util.List;
 
 @Controller
+@RequestMapping("/content/category")
 public class ContentCatController {
 
     @Resource
     private ContentCatService contentCatService;
 
     @ResponseBody
-    @RequestMapping(value = "/content/category/list", method = RequestMethod.GET)
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
     public List<EUTreeNode> getContentCatList(@RequestParam(value = "id", defaultValue = "0") Long parentId) {
         return contentCatService.getContentCatList(parentId);
     }
 
     @ResponseBody
-    @RequestMapping(value = "/content/category/create", method = RequestMethod.POST)
+    @RequestMapping(value = "/create", method = RequestMethod.POST)
     public TaotaoResult creatCategory(Long parentId, String name) {
         return contentCatService.creatCategory(parentId, name);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/delete/", method = RequestMethod.POST)
+    public TaotaoResult deleteCategory(Long parentId, Long id) {
+        return contentCatService.deleteCategory(parentId, id);
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/update", method = RequestMethod.POST)
+    public TaotaoResult updateCategory(Long id, String name) {
+        return contentCatService.updateCategory(id, name);
     }
 }

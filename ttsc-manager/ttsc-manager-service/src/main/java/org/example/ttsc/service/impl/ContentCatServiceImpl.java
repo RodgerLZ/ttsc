@@ -21,7 +21,10 @@ public class ContentCatServiceImpl implements ContentCatService {
     @Override
     public List<EUTreeNode> getContentCatList(long parentId) {
 
-        List<TbContentCategory> tbContentCategories = contentCategoryMapper.selectByParentId(parentId);
+        TbContentCategory queryParam = new TbContentCategory();
+        queryParam.setParentId(parentId);
+        List<TbContentCategory> tbContentCategories = contentCategoryMapper.selectList(queryParam);
+
         return tbContentCategories
                 .stream()
                 .map(p -> new EUTreeNode(p.getId(), p.getName(), p.getIsParent()? "closed" : "open"))
@@ -52,5 +55,35 @@ public class ContentCatServiceImpl implements ContentCatService {
         }
 
         return TaotaoResult.ok(tbContentCategory);
+    }
+
+    @Override
+    public TaotaoResult deleteCategory(Long parentId, Long id) {
+
+        contentCategoryMapper.deleteByPrimaryKey(id);
+
+        TbContentCategory queryParam = new TbContentCategory();
+        queryParam.setParentId(parentId);
+        List<TbContentCategory> tbContentCategories = contentCategoryMapper.selectList(queryParam);
+
+        if (tbContentCategories.size() == 0) {
+            TbContentCategory tbContentCategory = new TbContentCategory();
+            tbContentCategory.setId(parentId);
+            tbContentCategory.setIsParent(false);
+            contentCategoryMapper.updateByPrimaryKey(tbContentCategory);
+        }
+
+        return TaotaoResult.ok();
+    }
+
+    @Override
+    public TaotaoResult updateCategory(Long id, String name) {
+
+        TbContentCategory tbContentCategory = new TbContentCategory();
+        tbContentCategory.setId(id);
+        tbContentCategory.setName(name);
+        contentCategoryMapper.updateByPrimaryKey(tbContentCategory);
+
+        return TaotaoResult.ok();
     }
 }
