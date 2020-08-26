@@ -13,4 +13,6 @@ public interface TbItemParamItemMapper {
     List<TbItemParamItem> selectAll();
 
     int updateByPrimaryKey(TbItemParamItem record);
+
+    List<TbItemParamItem> selectList(TbItemParamItem record);
 }

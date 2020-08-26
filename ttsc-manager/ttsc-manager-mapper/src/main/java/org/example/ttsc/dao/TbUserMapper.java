@@ -13,4 +13,6 @@ public interface TbUserMapper {
     List<TbUser> selectAll();
 
     int updateByPrimaryKey(TbUser record);
+
+    List<TbUser> selectList(TbUser tbUser);
 }

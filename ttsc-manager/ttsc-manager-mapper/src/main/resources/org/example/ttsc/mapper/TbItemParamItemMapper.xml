@@ -8,6 +8,11 @@
     <result column="updated" jdbcType="TIMESTAMP" property="updated" />
     <result column="param_data" jdbcType="LONGVARCHAR" property="paramData" />
   </resultMap>
+
+  <sql id="Base_Column_List">
+    id,item_id,created,updated,param_data
+  </sql>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
     delete from tb_item_param_item
     where id = #{id,jdbcType=BIGINT}
@@ -34,5 +39,19 @@
   <select id="selectAll" resultMap="BaseResultMap">
     select id, item_id, created, updated, param_data
     from tb_item_param_item
+  </select>
+
+  <select id="selectList" parameterType="org.example.ttsc.entity.TbItemParamItem" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tb_item_param_item
+    <where>
+      <if test="id != null">
+        and id = #{id,jdbcType=BIGINT}
+      </if>
+      <if test="itemId != null">
+        and item_id = #{itemId,jdbcType=BIGINT}
+      </if>
+    </where>
   </select>
 </mapper>
